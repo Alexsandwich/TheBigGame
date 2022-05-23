@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>The Big Game</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="js/place.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body onLoad=initialise()>
+    <h1 id="demo"></h1>
+
+    <script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      // Get today's date and time
+      var now = new Date().getTime();
+        
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+        
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      // Output the result in an element with id="demo"
+      document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+        
+      // If the count down is over, write some text 
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+    </script>
+
+
+    <!-- The controls where our users will enter the coords and color to place. -->
+    <div class="controls">
+      X: <input type="number" min="0" max="50" id="x-coord">
+      <br>
+      Y: <input type="number" min="0" max="50" id="y-coord">
+      <br>
+      Color: <input type="color" id="color">
+      <br>
+        <button id="submit">Place Color</button>
+      <br>
+      <a href="/login.html">
+        <button>Login</button>
+     </a>
+    </div>
+
+    <!-- This canvas holds our, well, canvas. -->
+    <canvas id="place" height="500" width="500"></canvas>
+
+  </body>
+</html>
