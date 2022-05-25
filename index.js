@@ -120,6 +120,7 @@ app.post('/auth', function(request, response) {
 });
 
 
+
 app.get('/home', function(request, response) {
 	// If the user is loggedin
 	if (request.session.loggedin) {
