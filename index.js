@@ -62,6 +62,9 @@ connection.connect(); //Successful
 
 const app = express();
 
+
+
+
 app.use(session({
 	secret: 'secret',
 	resave: true,
@@ -77,8 +80,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 app.get('/', function(request, response) {
+	response.sendFile(path.join(__dirname + '/public', 'home.html'));
+});
+
+
+app.get('/login', function(request, response) {
 	// Render login template
 	response.sendFile(path.join(__dirname + '/public', 'login.html'));
 });
